@@ -8,7 +8,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 
 @Composable
-fun FirstScreen() {
+fun FirstScreen(onNavigateToSecondScreen: (String) -> Unit) {
     var textoIngresado by remember { mutableStateOf("") }
     Scaffold(
         containerColor = Color(0xFFE3F2FD)
@@ -31,7 +31,11 @@ fun FirstScreen() {
             Spacer(modifier = Modifier.height(20.dp))
 
             Button(
-                onClick = { }
+                onClick = {
+                    if (textoIngresado.isNotBlank()){
+                        onNavigateToSecondScreen(textoIngresado)
+                    }
+                }
             ) {
                 Text("Ir a SecondScreen")
             }
